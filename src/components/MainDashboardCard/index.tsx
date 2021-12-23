@@ -10,10 +10,10 @@ interface MainDashboardCardProps {
 const MainDashboardCard: React.FC<MainDashboardCardProps> = ({ cardData }) => {
   const { imageURL, title } = cardData
   return (
-    <Flex flexDir={'column'} w={'100%'} >
+    <Flex flexDir={'column'}>
       <ImageStyle src={imageURL} height={100} width={100} />
       <Title>{title}</Title>
-    </Flex>
+    </Flex >
   )
 };
 

@@ -9,9 +9,9 @@ import { useRouter } from "next/dist/client/router";
 import React from "react";
 import styled from "styled-components";
 
-interface NavBarProps {}
+interface NavBarProps { }
 
-const NavBar: React.FC<NavBarProps> = ({}) => {
+const NavBar: React.FC<NavBarProps> = ({ }) => {
   const router = useRouter();
 
   return (
@@ -38,7 +38,7 @@ const NavBar: React.FC<NavBarProps> = ({}) => {
         </Menu>
       </SecondContainer>
     </NavContainer>
-  );
+  )
 };
 
 const NavContainer = styled.div({
@@ -48,6 +48,9 @@ const NavContainer = styled.div({
   alignItems: "center",
   margin: "0px 25px",
   height: "60px",
+  // position: 'fixed',
+  // top: 0,
+  // width: '100%',
 });
 
 const Logo = styled.p({
@@ -57,10 +60,13 @@ const Logo = styled.p({
   textShadow: "0px 2px 2px white",
   textDecoration: "none",
   cursor: "pointer",
+  textAlign: 'center'
 });
 
 const SecondContainer = styled.div({
   display: "flex",
+  textAlign: 'center',
+  alignContent: 'center'
 });
 
 const Option = styled.p`
