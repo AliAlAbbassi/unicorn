@@ -1,35 +1,22 @@
 import { Flex } from '@chakra-ui/react';
-import Image from 'next/image';
-import styled from 'styled-components';
+import { useRouter } from 'next/router';
 import { MainDashboardCardData } from '../../../data';
+import { ImageStyle, Title } from './styled';
 
 interface MainDashboardCardProps {
   cardData: MainDashboardCardData
 }
 
 const MainDashboardCard: React.FC<MainDashboardCardProps> = ({ cardData }) => {
-  const { imageURL, title } = cardData
+  const { imageURL, title, appName } = cardData
+  const router = useRouter()
   return (
-    <Flex flexDir={'column'}>
+    <Flex flexDir={'column'} onClick={() => router.push(`/${appName}`)}>
       <ImageStyle src={imageURL} height={100} width={100} />
       <Title>{title}</Title>
     </Flex >
   )
 };
 
-const Title = styled.p({
-  fontSize: '20px',
-  padding: 0,
-  margin: 0,
-  textAlign: 'center',
-  textDecoration: 'none',
-  cursor: 'pointer'
-})
-
-const ImageStyle = styled(Image)`
-  margin: 0px;
-  padding: 0px;
-  cursor: pointer;
-`
 
 export default MainDashboardCard;

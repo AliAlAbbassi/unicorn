@@ -20,6 +20,6 @@ const Container = styled.div`
   font-family: "Segoe UI";
   /* height: 55vh; */
   height: 100%;
-  
+  width: 100%; 
 `;
 export default index;

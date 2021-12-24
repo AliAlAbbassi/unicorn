@@ -1,7 +1,7 @@
 import { Grid, useMediaQuery } from "@chakra-ui/react";
-import styled from 'styled-components';
 import { MainDashboardCardData } from "../../../data";
 import MainDashboardCard from "../MainDashboardCard";
+import { P } from "./styled";
 
 interface MainDashboardProps { }
 
@@ -37,8 +37,4 @@ const MainDashboard: React.FC<MainDashboardProps> = ({ }) => {
     return <P>No Apps Installed</P>
 }
 
-// <Grid templateColumns='repeat(auto-fill, minmax(150px, 1fr))' mt={50} rowGap={50} p={10}></Grid>
-const P = styled.p({
-  textAlign: 'center'
-})
 export default MainDashboard;

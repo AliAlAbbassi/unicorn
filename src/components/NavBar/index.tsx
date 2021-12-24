@@ -2,103 +2,56 @@ import {
   Menu,
   MenuButton,
   MenuGroup,
-  MenuItem,
   MenuList,
+  useMediaQuery
 } from "@chakra-ui/react";
 import { useRouter } from "next/dist/client/router";
 import React from "react";
-import styled from "styled-components";
+import { Option, LastOption, Logo, MenuItemStyled, NavContainer, SecondContainer, ShadowBox, ShadowBoxII } from "./styled";
 
 interface NavBarProps { }
 
 const NavBar: React.FC<NavBarProps> = ({ }) => {
   const router = useRouter();
+  const [isLargerThan1280] = useMediaQuery('(min-width: 1280px)')
 
   return (
     <NavContainer>
       <Logo onClick={() => router.push("/")}>Home</Logo>
-      <SecondContainer>
-        <Menu>
-          <MenuButton as={Option}>Notification</MenuButton>
-          <MenuList>
-            <ShadowBoxII>
-              <MenuItemStyled>Empty</MenuItemStyled>
-            </ShadowBoxII>
-          </MenuList>
-        </Menu>
-        <Menu>
-          <MenuButton as={LastOption}>User</MenuButton>
-          <MenuList>
-            <ShadowBox>
-              <MenuGroup title="Profile">
-                <MenuItemStyled>My Account</MenuItemStyled>
-              </MenuGroup>
-            </ShadowBox>
-          </MenuList>
-        </Menu>
-      </SecondContainer>
-    </NavContainer>
+      {isLargerThan1280 ? (
+        <SecondContainer>
+          <Menu>
+            <MenuButton as={Option}>Notification</MenuButton>
+            <MenuList>
+              <ShadowBoxII>
+                <MenuItemStyled>Empty</MenuItemStyled>
+              </ShadowBoxII>
+            </MenuList>
+          </Menu>
+          <Menu>
+            <MenuButton as={LastOption}>User</MenuButton>
+            <MenuList>
+              <ShadowBox>
+                <MenuGroup title="Profile">
+                  <MenuItemStyled>My Account</MenuItemStyled>
+                </MenuGroup>
+              </ShadowBox>
+            </MenuList>
+          </Menu>
+        </SecondContainer>
+      ) : (
+        <SecondContainer>
+          <Menu>
+            <MenuButton as={Option} onClick={() => router.push('/notifications')}>Notification</MenuButton>
+          </Menu>
+          <Menu>
+            <MenuButton as={LastOption} onClick={() => router.push('/user-profile')}>User</MenuButton>
+          </Menu>
+        </SecondContainer>
+      )}
+    </NavContainer >
   )
 };
 
-const NavContainer = styled.div({
-  display: "flex",
-  fontFamily: "Segoe UI",
-  justifyContent: "space-between",
-  alignItems: "center",
-  margin: "0px 25px",
-  height: "60px",
-  // position: 'fixed',
-  // top: 0,
-  // width: '100%',
-});
-
-const Logo = styled.p({
-  fontSize: "45px",
-  color: "black",
-  fontWeight: "bold",
-  textShadow: "0px 2px 2px white",
-  textDecoration: "none",
-  cursor: "pointer",
-  textAlign: 'center'
-});
-
-const SecondContainer = styled.div({
-  display: "flex",
-  textAlign: 'center',
-  alignContent: 'center'
-});
-
-const Option = styled.p`
-  margin-right: 20px;
-  font-size: 20px;
-  color: #242424;
-  text-decoration: none;
-  cursor: pointer;
-`;
-
-const ShadowBox = styled.div({
-  boxShadow: "0 0px 5px rgb(0 0 0 / 0.2)",
-  padding: "0.1px 13px 13px 13px",
-  borderRadius: "5px",
-});
-
-const ShadowBoxII = styled.div({
-  boxShadow: "0 0px 5px rgb(0 0 0 / 0.2)",
-  padding: "10px",
-  borderRadius: "5px",
-});
-
-const LastOption = styled.p({
-  fontSize: "20px",
-  color: "#242424",
-  cursor: "pointer",
-  textDecoration: "none",
-});
-
-const MenuItemStyled = styled(MenuItem)`
-  background-color: white;
-  border: none;
-`;
 
 export default NavBar;
